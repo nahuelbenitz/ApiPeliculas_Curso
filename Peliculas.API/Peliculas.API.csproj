@@ -19,6 +19,8 @@
     <Folder Include="Controllers\" />
     <Folder Include="Mapper\" />
     <Folder Include="Models\DTOs\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Mapper\" />
   </ItemGroup>
 
 </Project>
