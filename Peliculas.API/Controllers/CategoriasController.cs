@@ -22,5 +22,36 @@ namespace Peliculas.API.Controllers
             var lista = await _repository.GetAll();
             return Ok(lista);
         }
+
+        [HttpGet("id:int",Name = "GetById")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var categoria = await _repository.GetById(id);
+
+            if (categoria == null) 
+                return NotFound();
+
+            return Ok(categoria);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CategoriaCreateDTO dto)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(dto == null)
+                return BadRequest();
+
+            if(await _repository.ExisteByNombre(dto.Nombre))
+                return BadRequest();
+
+            var categoria = await _repository.Crear(dto);
+
+            if(categoria == null)
+                return BadRequest();
+
+            return CreatedAtRoute("GetById", new { id = categoria.Id }, categoria);
+        }
     }
 }

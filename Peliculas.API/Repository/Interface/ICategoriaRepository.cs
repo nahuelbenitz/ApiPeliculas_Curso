@@ -9,7 +9,7 @@ namespace Peliculas.API.Repository.Interface
         Task<CategoriaDTO?> GetById(int id);
         Task<bool> ExisteById(int id);
         Task<bool> ExisteByNombre(string nombre);
-        Task<bool> Crear(CategoriaCreateDTO categoria);
+        Task<CategoriaDTO?> Crear(CategoriaCreateDTO categoria);
         Task<bool> Actualizar(CategoriaDTO categoria);
         Task<bool> Borrar(CategoriaDTO categoria);
         Task<bool> Guardar();

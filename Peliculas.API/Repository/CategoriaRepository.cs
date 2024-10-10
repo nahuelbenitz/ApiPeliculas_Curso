@@ -33,12 +33,12 @@ namespace Peliculas.API.Repository
             return await Guardar();
         }
 
-        public async Task<bool> Crear(CategoriaCreateDTO categoriaCreateDTO)
+        public async Task<CategoriaDTO?> Crear(CategoriaCreateDTO categoriaCreateDTO)
         {
             var categoria = _mapper.Map<Categoria>(categoriaCreateDTO);
             categoria.FechaCreacion = DateTime.Now;
             await _context.Categorias.AddAsync(categoria);
-            return await Guardar();
+            return await Guardar() ? _mapper.Map<CategoriaDTO>(categoria) : null ;
         }
 
         public async Task<bool> ExisteById(int id)
