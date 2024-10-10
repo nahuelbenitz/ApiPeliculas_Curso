@@ -7,10 +7,9 @@ namespace Peliculas.API.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required(ErrorMessage = "El nombre es requerido")]
+        [Required]
         public string Nombre { get; set; } = null!;
         [Required]
-        [DisplayName("Fecha de creación")]
         public DateTime FechaCreacion { get; set; }
 
     }

@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Peliculas.API.Data;
+using Peliculas.API.Mapper;
+using Peliculas.API.Repository;
+using Peliculas.API.Repository.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +17,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+//Automapper
+builder.Services.AddAutoMapper(typeof(PeliculasProfile));
 
+//Repositories
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+
+//Services
 
 var app = builder.Build();
 
